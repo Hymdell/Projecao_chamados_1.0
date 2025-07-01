@@ -1,0 +1,634 @@
+<html lang="pt-BR" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Chamados - Projeção</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              projecao: {
+                orange: '#FF7F00',
+                green: '#4CAF50',
+                blue: '#2196F3',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-white dark:bg-gray-800 shadow-md">
+        <div
+          class="container mx-auto px-4 py-3 flex justify-between items-center"
+        >
+          <div class="flex items-center">
+            <div class="flex space-x-1 mr-3">
+              <div
+                class="w-8 h-8 bg-[#FF7F00] rounded flex items-center justify-center overflow-hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M2 12h20"></path>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="w-8 h-8 bg-[#4CAF50] rounded flex items-center justify-center overflow-hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M2 12h20"></path>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="w-8 h-8 bg-[#2196F3] rounded flex items-center justify-center overflow-hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M2 12h20"></path>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
+              Projeção
+            </h1>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button
+              id="darkModeToggle"
+              class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-700 dark:text-yellow-300 hidden dark:block"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-700 dark:text-gray-300 block dark:hidden"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0"
+          >
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+              Chamados Registrados
+            </h3>
+
+            <div
+              class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2"
+            >
+              <button
+                id="newTicketBtn"
+                class="btn-orange rounded-md py-2 px-3 text-sm font-medium flex items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 mr-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
+                Novo
+              </button>
+              <div class="relative flex-grow">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Pesquisar chamados..."
+                  class="w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white pr-10"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <select
+                id="searchField"
+                class="rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              >
+                <option value="all">Todos os campos</option>
+                <option value="id">Número</option>
+                <option value="location">Local</option>
+                <option value="user">Usuário</option>
+                <option value="asset">Patrimônio</option>
+                <option value="technician">Técnico</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 my-4">
+            <button id="showAll" class="btn-blue rounded-md py-1 px-3 text-sm">
+              Todos
+            </button>
+            <button
+              id="showActive"
+              class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-1 px-3 text-sm hover:bg-gray-300 dark:hover:bg-gray-600"
+            >
+              Ativos
+            </button>
+            <button
+              id="showCompleted"
+              class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-1 px-3 text-sm hover:bg-gray-300 dark:hover:bg-gray-600"
+            >
+              Concluídos
+            </button>
+          </div>
+
+          <div
+            id="ticketGrid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
+          >
+            <div
+              class="text-center py-8 text-gray-500 dark:text-gray-400 col-span-full"
+            >
+              Nenhum chamado registrado
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div
+      id="newTicketModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center border-b pb-3 mb-4">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+              Novo Chamado
+            </h3>
+            <button
+              id="closeNewTicketModal"
+              class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <form id="ticketForm" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="location"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Local <span class="text-red-500">*</span></label
+                >
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  required=""
+                />
+                <p id="locationError" class="text-red-500 text-xs mt-1 hidden">
+                  Este campo é obrigatório
+                </p>
+              </div>
+              <div>
+                <label
+                  for="user"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Usuário</label
+                >
+                <input
+                  type="text"
+                  id="user"
+                  name="user"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="ip"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Endereço IP</label
+                >
+                <input
+                  type="text"
+                  id="ip"
+                  name="ip"
+                  placeholder="000.000.000.000"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+                <p id="ipError" class="text-red-500 text-xs mt-1 hidden">
+                  Formato de IP inválido
+                </p>
+              </div>
+              <div>
+                <label
+                  for="asset"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Patrimônio</label
+                >
+                <input
+                  type="text"
+                  id="asset"
+                  name="asset"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="technician"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Técnico Responsável</label
+                >
+                <input
+                  type="text"
+                  id="technician"
+                  name="technician"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="checklist"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Checklist Inicial (separado por linha)</label
+                >
+                <textarea
+                  id="checklist"
+                  name="checklist"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  placeholder="Verificar conexões
+Testar monitor
+Atualizar drivers"
+                ></textarea>
+              </div>
+              <div class="md:col-span-2">
+                <label
+                  for="problem"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Problema <span class="text-red-500">*</span></label
+                >
+                <textarea
+                  id="problem"
+                  name="problem"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  required=""
+                ></textarea>
+                <p id="problemError" class="text-red-500 text-xs mt-1 hidden">
+                  Este campo é obrigatório
+                </p>
+              </div>
+            </div>
+            <div class="pt-2 flex justify-end">
+              <button
+                type="button"
+                id="cancelNewTicket"
+                class="mr-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-2 px-4 font-medium hover:bg-gray-300 dark:hover:bg-gray-600"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                class="btn-orange rounded-md py-2 px-4 font-medium"
+              >
+                Registrar Chamado
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="editModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-center border-b pb-3 mb-4">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
+              Editar Chamado #<span id="editTicketId"></span>
+            </h3>
+            <button
+              id="closeModal"
+              class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <form id="editForm" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="editLocation"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Local <span class="text-red-500">*</span></label
+                >
+                <input
+                  type="text"
+                  id="editLocation"
+                  name="editLocation"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  required=""
+                />
+                <p
+                  id="editLocationError"
+                  class="text-red-500 text-xs mt-1 hidden"
+                >
+                  Este campo é obrigatório
+                </p>
+              </div>
+              <div>
+                <label
+                  for="editUser"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Usuário</label
+                >
+                <input
+                  type="text"
+                  id="editUser"
+                  name="editUser"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="editIp"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Endereço IP</label
+                >
+                <input
+                  type="text"
+                  id="editIp"
+                  name="editIp"
+                  placeholder="000.000.000.000"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+                <p id="editIpError" class="text-red-500 text-xs mt-1 hidden">
+                  Formato de IP inválido
+                </p>
+              </div>
+              <div>
+                <label
+                  for="editAsset"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Patrimônio</label
+                >
+                <input
+                  type="text"
+                  id="editAsset"
+                  name="editAsset"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="editTechnician"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Técnico Responsável</label
+                >
+                <input
+                  type="text"
+                  id="editTechnician"
+                  name="editTechnician"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                />
+              </div>
+              <div>
+                <label
+                  for="editSolution"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Solução</label
+                >
+                <textarea
+                  id="editSolution"
+                  name="editSolution"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                ></textarea>
+              </div>
+              <div class="md:col-span-2">
+                <label
+                  for="editProblem"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Problema <span class="text-red-500">*</span></label
+                >
+                <textarea
+                  id="editProblem"
+                  name="editProblem"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 border dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                  required=""
+                ></textarea>
+                <p
+                  id="editProblemError"
+                  class="text-red-500 text-xs mt-1 hidden"
+                >
+                  Este campo é obrigatório
+                </p>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between">
+                <label
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Checklist</label
+                >
+                <button
+                  type="button"
+                  id="addChecklistItem"
+                  class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                >
+                  + Adicionar item
+                </button>
+              </div>
+              <div
+                id="editChecklist"
+                class="mt-2 space-y-2 border rounded-md p-3 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+              ></div>
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="editCompleted"
+                name="editCompleted"
+                class="h-4 w-4 text-green-600 border-gray-300 rounded dark:border-gray-600"
+              />
+              <label
+                for="editCompleted"
+                class="ml-2 block text-sm text-gray-700 dark:text-gray-300"
+                >Chamado concluído</label
+              >
+            </div>
+            <div class="pt-2 flex justify-end space-x-3">
+              <button
+                type="button"
+                id="deleteTicket"
+                class="btn-orange rounded-md py-2 px-4 font-medium"
+              >
+                Excluir Chamado
+              </button>
+              <button
+                type="submit"
+                class="btn-green rounded-md py-2 px-4 font-medium"
+              >
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="confirmModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md mx-4"
+      >
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+            Confirmar Exclusão
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Tem certeza que deseja excluir este chamado? Esta ação não pode ser
+            desfeita.
+          </p>
+          <div class="flex justify-end space-x-3">
+            <button
+              id="cancelDelete"
+              class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md py-2 px-4 font-medium hover:bg-gray-300 dark:hover:bg-gray-600"
+            >
+              Cancelar
+            </button>
+            <button
+              id="confirmDelete"
+              class="btn-orange rounded-md py-2 px-4 font-medium"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast">
+      <div class="flex items-center">
+        <span id="toastMessage"></span>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
